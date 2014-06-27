@@ -1,0 +1,28 @@
+<head>
+  <title>notdoingnow</title>
+</head>
+
+<body>
+  <h1>Not Doing Now:</h1>
+  {{> notdoing_input}}
+  {{> notdoing_list}}
+</body>
+
+<template name="notdoing_list">
+  <ul>
+  {{#each notdoing}}
+    <li class="notdo{{#if completed}} complete{{/if}}">
+      {{title}}
+      <input type="checkbox" class="done"
+      {{#if completed}}checked{{/if}} />
+    </li>
+    {{/each}}
+    </ul>
+</template>
+
+<template name="notdoing_input">
+  <form>
+    <input type="text" class="add-notdoing" placeholder="Not doing: "/>
+    <input type="submit" value="Add"/>
+  </form>
+</template>
