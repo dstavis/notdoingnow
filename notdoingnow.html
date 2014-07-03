@@ -9,12 +9,13 @@
 </body>
 
 <template name="notdoing_list">
+  <h2>{{notDoingCount}} things you're not doing right now: </h2>
   <ul>
   {{#each notdoing}}
-    <li class="notdo{{#if completed}} complete{{/if}}">
+    <li class="notdoing{{#if completed}} complete{{/if}}">
       {{title}}
       <input type="checkbox" class="done"
-      {{#if completed}}checked{{/if}} />
+      {{notDoingAttributes}} />
     </li>
     {{/each}}
     </ul>

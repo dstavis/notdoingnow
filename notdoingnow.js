@@ -5,6 +5,17 @@ if (Meteor.isClient) {
   Template.notdoing_list.helpers({
     notdoing: function(){
       return Notdoing.find()
+    },
+    notDoingAttributes: function(){
+      if (this.completed){
+        return {checked: true}
+      }
+      else{
+        return {}
+      }
+    },
+    notDoingCount: function(){
+      return Notdoing.find({completed: false}).count()
     }
   })
 
@@ -13,27 +24,27 @@ if (Meteor.isClient) {
       event.preventDefault()
       var input = template.find('.add-notdoing')
       if (!input.value){ return false }
-      Meteor.call('addNotdo', input.value)
+      Meteor.call('addNotdoing', input.value)
       input.value = ''
     }
   })
 
   Template.notdoing_list.events({
     'click .done': function(){
-      Meteor.call('updateNotdo', this._id, !this.completed)
+      Meteor.call('updateNotdoing', this._id, !this.completed)
     }
   })
 }
 
 if (Meteor.isServer) {
   Meteor.methods({
-    addNotdo: function(title){
+    addNotdoing: function(title){
       Notdoing.insert({
         title: title,
         completed: false
       })
     },
-    updateNotdo: function(id, value){
+    updateNotdoing: function(id, value){
       Notdoing.update(id, {
         $set: {completed: value}
       })
