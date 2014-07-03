@@ -3,3 +3,24 @@
 .notdoing.complete{
   text-decoration: line-through;
 }
+
+.notdoing-list{
+  /*margin-left: 10px;*/
+}
+
+.notdoings{
+  margin-left: 0;
+  list-style: none;
+}
+
+.notdoing{
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  display: block;
+  width: 200px;
+  background: #eee;
+}
+
+.notdoing .done{
+  float:right;
+}

@@ -3,27 +3,32 @@
 </head>
 
 <body>
-  <h1>Not Doing Now:</h1>
-  {{> notdoing_input}}
-  {{> notdoing_list}}
+  <div class="container">
+    <h1>Not Doing Now:</h1>
+    {{> notdoing_input}}
+    {{> notdoing_list}}
+  </div>
 </body>
 
 <template name="notdoing_list">
-  <h2>{{notDoingCount}} things you're not doing right now: </h2>
-  <ul>
-  {{#each notdoing}}
-    <li class="notdoing{{#if completed}} complete{{/if}}">
-      {{title}}
-      <input type="checkbox" class="done"
-      {{notDoingAttributes}} />
-    </li>
-    {{/each}}
-    </ul>
+  <div class="notdoing-list">
+    <h2>{{notDoingCount}} things you're not doing right now: </h2>
+    <ul class="notdoings">
+    {{#each notdoing}}
+      <li class="notdoing{{#if completed}} complete{{/if}}">
+        {{title}}
+        <input type="checkbox" class="done"
+        {{notDoingAttributes}} />
+      </li>
+      {{/each}}
+      </ul>
+    </div>
 </template>
 
 <template name="notdoing_input">
-  <form>
+  <form class="form-inline">
     <input type="text" class="add-notdoing" placeholder="Not doing: "/>
-    <input type="submit" value="Add"/>
+    <input type="submit" class="btn btn-default" value="Add"/>
   </form>
+  <a href="#" class="clear btn btn-danger">Forget about these</a>
 </template>

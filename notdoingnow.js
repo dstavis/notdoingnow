@@ -26,6 +26,9 @@ if (Meteor.isClient) {
       if (!input.value){ return false }
       Meteor.call('addNotdoing', input.value)
       input.value = ''
+    },
+    "click .clear": function(){
+      Meteor.call("clearCompleted")
     }
   })
 
@@ -47,6 +50,11 @@ if (Meteor.isServer) {
     updateNotdoing: function(id, value){
       Notdoing.update(id, {
         $set: {completed: value}
+      })
+    },
+    clearCompleted: function(){
+      Notdoing.remove({
+        completed: true
       })
     }
   })
